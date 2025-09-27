@@ -26,4 +26,7 @@ public interface OilDao {
 
     @Query("DELETE FROM oils")
     void deleteAll();
+    @Query("SELECT * FROM oils WHERE name = :name LIMIT 1")
+    Oil getOilByName(String name);
+
 }

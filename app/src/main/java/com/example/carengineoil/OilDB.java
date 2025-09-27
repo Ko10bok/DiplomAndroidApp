@@ -5,7 +5,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import android.content.Context;
 
-@Database(entities = {Oil.class}, version = 1, exportSchema = false)
+@Database(entities = {Oil.class}, version = 3, exportSchema = false)
 public abstract class OilDB extends RoomDatabase {
 
     public abstract OilDao oilDao();
@@ -18,7 +18,7 @@ public abstract class OilDB extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     OilDB.class, "oil_database")
-                            .fallbackToDestructiveMigration() // при изменении схемы
+                            .fallbackToDestructiveMigration()
                             .build();
                 }
             }
@@ -26,3 +26,4 @@ public abstract class OilDB extends RoomDatabase {
         return INSTANCE;
     }
 }
+
