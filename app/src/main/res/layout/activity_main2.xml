@@ -10,86 +10,14 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView18"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="serif"
-        android:lineSpacingExtra="0sp"
-        android:text="Содержание воды"
-        android:textAlignment="center"
-        android:textColor="#FCF5FD"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:typeface="serif"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-    <TextView
         android:id="@+id/textView19"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="47dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="serif"
         android:lineSpacingExtra="0sp"
         android:text="Содержание примесей"
-        android:textAlignment="center"
-        android:textColor="#FCF5FD"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:typeface="serif"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="99dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:fontFamily="serif"
-        android:lineSpacingExtra="0sp"
-        android:text="ppm (мг/кг)"
-        android:textAlignment="viewStart"
-        android:textColor="#FCF5FD"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:typeface="serif"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="99dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:fontFamily="serif"
-        android:lineSpacingExtra="0sp"
-        android:text="%"
-        android:textAlignment="viewStart"
-        android:textColor="#FCF5FD"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:typeface="serif"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView31" />
-
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="serif"
-        android:lineSpacingExtra="0sp"
-        android:text="Содержание железа"
         android:textAlignment="center"
         android:textColor="#FCF5FD"
         android:textSize="14sp"
@@ -101,9 +29,8 @@
     <TextView
         android:id="@+id/textView31"
         android:layout_width="99dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="36dp"
         android:fontFamily="serif"
         android:lineSpacingExtra="0sp"
@@ -114,32 +41,14 @@
         android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="serif"
-        android:lineSpacingExtra="0sp"
-        android:text="Содержание сажи"
-        android:textAlignment="center"
-        android:textColor="#FCF5FD"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:typeface="serif"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     <TextView
         android:id="@+id/textView11"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="47dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="serif"
         android:lineSpacingExtra="0sp"
         android:text="Плотность"
@@ -149,33 +58,13 @@
         android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="99dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="36dp"
-        android:fontFamily="serif"
-        android:lineSpacingExtra="0sp"
-        android:text="%"
-        android:textAlignment="viewStart"
-        android:textColor="#FCF5FD"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:typeface="serif"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="99dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="36dp"
         android:fontFamily="serif"
         android:lineSpacingExtra="0sp"
@@ -186,37 +75,34 @@
         android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="99dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="36dp"
         android:fontFamily="serif"
         android:lineSpacingExtra="0sp"
-        android:text="кв.мм/c"
+        android:text="баллов"
         android:textAlignment="viewStart"
         android:textColor="#FCF5FD"
         android:textSize="14sp"
         android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="47dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="25dp"
         android:fontFamily="serif"
         android:lineSpacingExtra="0sp"
-        android:text="Вязкость кинематическая"
+        android:text="ДСС"
         android:textAlignment="center"
         android:textColor="#FCF5FD"
         android:textSize="14sp"
@@ -228,9 +114,9 @@
     <EditText
         android:id="@+id/editTextText3"
         android:layout_width="97dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="9dp"
         android:ems="10"
         android:inputType="text"
@@ -243,45 +129,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/editTextText28"
-        android:layout_width="97dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="9dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textAlignment="viewStart"
-        android:textColor="#FCF5FD"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textView22"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText27" />
-
-    <EditText
-        android:id="@+id/editTextText26"
-        android:layout_width="97dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="9dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textAlignment="viewStart"
-        android:textColor="#FCF5FD"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textView21"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText25" />
-
-    <EditText
         android:id="@+id/editTextText27"
         android:layout_width="97dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="9dp"
         android:ems="10"
         android:inputType="text"
@@ -291,14 +143,14 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/textView31"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText26" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextText25" />
 
     <EditText
         android:id="@+id/editTextText24"
         android:layout_width="97dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="9dp"
         android:ems="10"
         android:inputType="text"
@@ -313,9 +165,9 @@
     <EditText
         android:id="@+id/editTextText25"
         android:layout_width="97dp"
-        android:layout_height="35dp"
+        android:layout_height="40dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="9dp"
         android:ems="10"
         android:inputType="text"
@@ -325,31 +177,13 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/textView16"
         app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText23" />
-
-    <EditText
-        android:id="@+id/editTextText23"
-        android:layout_width="97dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="9dp"
-        android:ems="10"
-        android:inputType="text"
-        android:textAlignment="viewStart"
-        android:textColor="#FCF5FD"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textView12"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/editTextText24" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="99dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="276dp"
-        android:layout_marginTop="120dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="67dp"
         android:layout_marginEnd="36dp"
         android:fontFamily="serif"
         android:lineSpacingExtra="0sp"
@@ -360,15 +194,14 @@
         android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="150dp"
-        android:layout_height="40dp"
+        android:layout_height="47dp"
         android:layout_marginStart="12dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="67dp"
         android:fontFamily="serif"
         android:lineSpacingExtra="8sp"
         android:text="Кислотное число"
@@ -378,7 +211,7 @@
         android:textStyle="bold"
         android:typeface="serif"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/button3"
