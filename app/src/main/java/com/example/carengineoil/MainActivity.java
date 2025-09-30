@@ -48,9 +48,8 @@ public class MainActivity extends AppCompatActivity {
         params[1] = findViewById(R.id.editTextText24);
         params[2] = findViewById(R.id.editTextText23);
         params[3] = findViewById(R.id.editTextText25);
-        params[4] = findViewById(R.id.editTextText26);
-        params[5] = findViewById(R.id.editTextText27);
-        params[6] = findViewById(R.id.editTextText28);
+
+
 
         Button btnCheck = findViewById(R.id.button7);
         Button btnClear = findViewById(R.id.button4);

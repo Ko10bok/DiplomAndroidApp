@@ -39,11 +39,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         params[0] = findViewById(R.id.editTextText3);
         params[1] = findViewById(R.id.editTextText24);
-        params[2] = findViewById(R.id.editTextText23);
         params[3] = findViewById(R.id.editTextText25);
-        params[4] = findViewById(R.id.editTextText26);
         params[5] = findViewById(R.id.editTextText27);
-        params[6] = findViewById(R.id.editTextText28);
 
         Button buttonCheck = findViewById(R.id.button7);
         Button buttonBack = findViewById(R.id.button);
