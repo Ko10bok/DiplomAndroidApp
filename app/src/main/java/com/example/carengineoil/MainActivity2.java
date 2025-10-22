@@ -15,15 +15,15 @@ public class MainActivity2 extends AppCompatActivity {
     private EditText[] params = new EditText[4];
     private double[][] ranges = {
             {0.5, 3.0},      // Кислотное число
-            {12.5, 16.3},    // Вязкость кинематическая
             {1.0, 6.0},      // Дисперсионно стабилизирующие свойства (баллы)
+            {12.5, 16.3},    // Плотность
             {0.14, 1.0}      // Содержание нерастворимых примесей
     };
 
     private String[] paramNames = {
             "Кислотное число",
-            "Вязкость кинематическая",
             "Дисперсионно стабилизирующие свойства",
+            "Плотность",
             "Содержание нерастворимых примесей"
     };
 
@@ -34,8 +34,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         // Инициализация EditText — проверьте соответствие ID с разметкой
         params[0] = findViewById(R.id.editTextText3);   // Кислотное число
-        params[1] = findViewById(R.id.editTextText24);  // Вязкость кинематическая
-        params[2] = findViewById(R.id.editTextText25);  // Дисперсионно стабилизирующие свойства
+        params[1] = findViewById(R.id.editTextText24);  // Дисперсионно стабилизирующие свойства
+        params[2] = findViewById(R.id.editTextText25);  // Плотность
         params[3] = findViewById(R.id.editTextText27);  // Содержание нерастворимых примесей
 
         // --- Добавляем код для подстановки параметров из Intent ---
@@ -63,6 +63,16 @@ public class MainActivity2 extends AppCompatActivity {
         Button buttonCheck = findViewById(R.id.button7);
         Button buttonBack = findViewById(R.id.button);
         Button btnClear = findViewById(R.id.button4);
+        Button buttonGoTo4 = findViewById(R.id.button5);
+
+        buttonGoTo4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (MainActivity2.this, MainActivity4.class);
+                startActivity(intent);
+            }
+        });
+
 
         buttonCheck.setOnClickListener(v -> {
             StringBuilder errors = new StringBuilder();
