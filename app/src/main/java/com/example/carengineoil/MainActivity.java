@@ -64,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
         Button btnCheck = findViewById(R.id.button7);
         Button btnClear = findViewById(R.id.button4);
         Button btnGoToSecond = findViewById(R.id.button3);
+        Button buttonGoTo4 = findViewById(R.id.button5);
+
+        buttonGoTo4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (MainActivity1.this, MainActivity4.class);
+                startActivity(intent);
+            }
+        });
 
         btnGoToSecond.setOnClickListener(v -> {
             Intent intentToSecond = new Intent(MainActivity.this, MainActivity2.class);

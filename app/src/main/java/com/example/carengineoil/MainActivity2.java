@@ -63,6 +63,16 @@ public class MainActivity2 extends AppCompatActivity {
         Button buttonCheck = findViewById(R.id.button7);
         Button buttonBack = findViewById(R.id.button);
         Button btnClear = findViewById(R.id.button4);
+        Button buttonGoTo4 = findViewById(R.id.button5);
+
+        buttonGoTo4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent (MainActivity2.this, MainActivity4.class);
+                startActivity(intent);
+            }
+        });
+
 
         buttonCheck.setOnClickListener(v -> {
             StringBuilder errors = new StringBuilder();
