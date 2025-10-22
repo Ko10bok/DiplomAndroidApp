@@ -9,6 +9,22 @@
     android:backgroundTint="#3F3F3F"
     tools:context=".InfoActivity4">
 
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="400dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="2dp"
+        android:backgroundTint="#FF9800"
+        android:text="Назад"
+        android:textColor="#070607"
+        android:textSize="20sp"
+        app:cornerRadius="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="395dp"
