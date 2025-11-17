@@ -10,19 +10,21 @@
     tools:context=".MainActivity">
 
     <ScrollView
-        android:layout_width="405dp"
-        android:layout_height="415dp"
+        android:layout_width="406dp"
+        android:layout_height="485dp"
         android:layout_marginStart="4dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:layout_marginBottom="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical"></LinearLayout>
     </ScrollView>
 
     <EditText
@@ -247,31 +249,15 @@
         android:layout_width="400dp"
         android:layout_height="60dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="4dp"
-        android:backgroundTint="#FF9800"
-        android:bufferType="normal"
-        android:text="Характеристики, увеличивающиеся в проецессе эксплуатации"
-        android:textColor="#070607"
-        android:textSize="14sp"
-        app:cornerRadius="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="4dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="2dp"
         android:backgroundTint="#FF9800"
-        android:text="Характеристики, уменьшающиеся в процессе эксплуатации"
+        android:bufferType="normal"
+        android:text="Подбор моторного масла"
         android:textColor="#070607"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:cornerRadius="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/button7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -280,17 +266,16 @@
         android:layout_width="198dp"
         android:layout_height="60dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="2dp"
         android:backgroundTint="#FF9800"
         android:text="Сохранить"
         android:textColor="#070607"
+        android:textSize="16sp"
         app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button4"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintStart_toEndOf="@+id/button4" />
 
     <Button
         android:id="@+id/button4"
@@ -303,6 +288,7 @@
         android:backgroundTint="#FF9800"
         android:text="База данных"
         android:textColor="#070607"
+        android:textSize="16sp"
         app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button7"
