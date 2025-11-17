@@ -210,6 +210,4 @@ public class MainActivity2 extends AppCompatActivity {
                 .setCancelable(false)
                 .show();
     }
-
-
 }
