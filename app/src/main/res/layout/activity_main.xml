@@ -10,11 +10,11 @@
     tools:context=".MainActivity">
 
     <ScrollView
-        android:layout_width="406dp"
-        android:layout_height="485dp"
-        android:layout_marginStart="4dp"
+        android:layout_width="400dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="5dp"
         android:layout_marginBottom="3dp"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <androidx.gridlayout.widget.GridLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:columnCount="3">
 
             <EditText
@@ -72,13 +72,13 @@
                 android:textColor="#FCF5FD"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_column="2"
+                app:layout_column="1"
                 app:layout_row="0" />
 
             <TextView
                 android:id="@+id/textView9"
-                android:layout_width="150dp"
-                android:layout_height="47dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="60dp"
                 android:fontFamily="serif"
@@ -90,6 +90,7 @@
                 android:textStyle="bold"
                 android:typeface="serif"
                 app:layout_column="0"
+                app:layout_columnWeight="1"
                 app:layout_row="0" />
 
             <TextView
