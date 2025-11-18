@@ -23,8 +23,23 @@
 
         <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:columnCount="3">
 
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="150dp"
+                android:layout_height="47dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="60dp"
+                android:fontFamily="serif"
+                android:lineSpacingExtra="8sp"
+                android:text="Щелочное число"
+                android:textAlignment="center"
+                android:textColor="#FCF5FD"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:typeface="serif" />
         </androidx.gridlayout.widget.GridLayout>
     </ScrollView>
 
@@ -82,23 +97,6 @@
         android:typeface="serif"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="150dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="60dp"
-        android:fontFamily="serif"
-        android:lineSpacingExtra="8sp"
-        android:text="Щелочное число"
-        android:textAlignment="center"
-        android:textColor="#FCF5FD"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:typeface="serif"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView10"

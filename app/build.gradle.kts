@@ -55,6 +55,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.4.0")
     implementation(libs.activity)
     implementation(libs.gridlayout)
+    implementation(libs.fragment)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
