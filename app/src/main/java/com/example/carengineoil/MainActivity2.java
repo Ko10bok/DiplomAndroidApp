@@ -61,7 +61,6 @@ public class MainActivity2 extends AppCompatActivity {
         }
 
         Button buttonCheck = findViewById(R.id.button7);
-        Button buttonBack = findViewById(R.id.button);
         Button btnClear = findViewById(R.id.button4);
         Button buttonGoTo4 = findViewById(R.id.button5);
 
