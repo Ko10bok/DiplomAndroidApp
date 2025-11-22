@@ -32,11 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // Инициализация EditText — проверьте соответствие ID с разметкой
-        params[0] = findViewById(R.id.editTextText3);   // Кислотное число
-        params[1] = findViewById(R.id.editTextText24);  // Дисперсионно стабилизирующие свойства
-        params[2] = findViewById(R.id.editTextText25);  // Плотность
-        params[3] = findViewById(R.id.editTextText27);  // Содержание нерастворимых примесей
+        // Инициал  // Содержание нерастворимых примесей
 
         // --- Добавляем код для подстановки параметров из Intent ---
         Intent intent = getIntent();
@@ -111,11 +107,7 @@ public class MainActivity2 extends AppCompatActivity {
             showSaveDialog("Проверка параметров", message, isGood, failedParams);
         });
 
-        buttonBack.setOnClickListener(v -> {
-            Intent intentBack = new Intent(MainActivity2.this, MainActivity.class);
-            startActivity(intentBack);
-            finish();
-        });
+
 
         btnClear.setOnClickListener(v -> {
             Intent intentClear = new Intent(MainActivity2.this, MainActivity3.class);
@@ -209,4 +201,6 @@ public class MainActivity2 extends AppCompatActivity {
                 .setCancelable(false)
                 .show();
     }
+
+
 }

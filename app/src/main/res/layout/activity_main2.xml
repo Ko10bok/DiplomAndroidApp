@@ -143,7 +143,7 @@
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="2dp"
         android:backgroundTint="#FF9800"
-        android:text="Сохранить"
+        android:text="Подобрать"
         android:textColor="#070607"
         android:textSize="16sp"
         app:cornerRadius="5dp"

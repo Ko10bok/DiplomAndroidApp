@@ -14,19 +14,30 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText[] params = new EditText[4];
+    private EditText[] params = new EditText[8]; // 4 параметра из MainActivity + 4 из MainActivity2
+
     private double[][] ranges = {
+            // Параметры из MainActivity (текущие)
             {4.0, 12.0},     // Щелочное число
             {12.5, 16.3},    // Вязкость кинематическая
             {10.0, 15.0},    // Испаряемость
-            {190.0, 250.0}   // Температура вспышки
+            {190.0, 250.0},  // Температура вспышки
+            // Параметры из MainActivity2
+            {0.5, 3.0},      // Кислотное число
+            {1.0, 6.0},      // Дисперсионно стабилизирующие свойства
+            {12.5, 16.3},    // Плотность
+            {0.14, 1.0}      // Содержание нерастворимых примесей
     };
 
     private String[] paramNames = {
             "Щелочное число",
             "Вязкость кинематическая",
             "Испаряемость",
-            "Температура вспышки"
+            "Температура вспышки",
+            "Кислотное число",
+            "Дисперсионно стабилизирующие свойства",
+            "Плотность",
+            "Содержание нерастворимых примесей"
     };
 
     @Override
@@ -34,11 +45,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        params[0] = findViewById(R.id.editTextText3);
-        params[1] = findViewById(R.id.editTextText24);
-        params[2] = findViewById(R.id.editTextText23);
-        params[3] = findViewById(R.id.editTextText25);
+        // Инициализация EditText — обязательно обновите id в разметке activity_main, чтобы добавить новые поля
+        params[0] = findViewById(R.id.editTextText3);   // Щелочное число
+        params[1] = findViewById(R.id.editTextText24);  // Вязкость кинематическая
+        params[2] = findViewById(R.id.editTextText23);  // Испаряемость
+        params[3] = findViewById(R.id.editTextText25);  // Температура вспышки
 
+        params[4] = findViewById(R.id.editTextText);  // Кислотное число (новое, создайте в layout, например editTextTextAcidValue)
+        params[5] = findViewById(R.id.editTextText2);   // Дисперсионно стабилизирующие свойства (новое)
+        params[6] = findViewById(R.id.editTextText4);    // Плотность (новое)
+        params[7] = findViewById(R.id.editTextText5); // Содержание нерастворимых примесей (новое)
         // Подстановка параметров из Intent
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("parameters")) {
@@ -66,19 +82,7 @@ public class MainActivity extends AppCompatActivity {
         Button btnGoToSecond = findViewById(R.id.button3);
         Button buttonGoTo4 = findViewById(R.id.button5);
 
-        buttonGoTo4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (MainActivity.this, InfoActivity4.class);
-                startActivity(intent);
-            }
-        });
-
-        btnGoToSecond.setOnClickListener(v -> {
-            Intent intentToSecond = new Intent(MainActivity.this, MainActivity2.class);
-            startActivity(intentToSecond);
-        });
-
+        // Обработчик проверки с учётом всех параметров
         btnCheck.setOnClickListener(v -> {
             StringBuilder errors = new StringBuilder();
             boolean hasValues = false;
