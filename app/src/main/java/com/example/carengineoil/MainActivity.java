@@ -14,8 +14,6 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    public class MainActivity extends AppCompatActivity {
-
         private EditText[] params = new EditText[8]; // 4 параметра из MainActivity + 4 из MainActivity2
 
         private double[][] ranges = {
