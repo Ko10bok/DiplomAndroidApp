@@ -14,47 +14,47 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-        private EditText[] params = new EditText[8]; // 4 параметра из MainActivity + 4 из MainActivity2
+    private EditText[] params = new EditText[8]; // 4 параметра из MainActivity + 4 из MainActivity2
 
-        private double[][] ranges = {
-                // Параметры из MainActivity (текущие)
-                {4.0, 12.0},     // Щелочное число
-                {12.5, 16.3},    // Вязкость кинематическая
-                {10.0, 15.0},    // Испаряемость
-                {190.0, 250.0},  // Температура вспышки
-                // Параметры из MainActivity2
-                {0.5, 3.0},      // Кислотное число
-                {1.0, 6.0},      // Дисперсионно стабилизирующие свойства
-                {12.5, 16.3},    // Плотность
-                {0.14, 1.0}      // Содержание нерастворимых примесей
-        };
+    private double[][] ranges = {
+            // Параметры из MainActivity (текущие)
+            {4.0, 12.0},     // Щелочное число
+            {12.5, 16.3},    // Вязкость кинематическая
+            {10.0, 15.0},    // Испаряемость
+            {190.0, 250.0},  // Температура вспышки
+            // Параметры из MainActivity2
+            {0.5, 3.0},      // Кислотное число
+            {1.0, 6.0},      // Дисперсионно стабилизирующие свойства
+            {12.5, 16.3},    // Плотность
+            {0.14, 1.0}      // Содержание нерастворимых примесей
+    };
 
-        private String[] paramNames = {
-                "Щелочное число",
-                "Вязкость кинематическая",
-                "Испаряемость",
-                "Температура вспышки",
-                "Кислотное число",
-                "Дисперсионно стабилизирующие свойства",
-                "Плотность",
-                "Содержание нерастворимых примесей"
-        };
+    private String[] paramNames = {
+            "Щелочное число",
+            "Вязкость кинематическая",
+            "Испаряемость",
+            "Температура вспышки",
+            "Кислотное число",
+            "Дисперсионно стабилизирующие свойства",
+            "Плотность",
+            "Содержание нерастворимых примесей"
+    };
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_main);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-            // Инициализация EditText — обязательно обновите id в разметке activity_main, чтобы добавить новые поля
-            params[0] = findViewById(R.id.editTextText3);   // Щелочное число
-            params[1] = findViewById(R.id.editTextText24);  // Вязкость кинематическая
-            params[2] = findViewById(R.id.editTextText23);  // Испаряемость
-            params[3] = findViewById(R.id.editTextText25);  // Температура вспышки
+        // Инициализация EditText — обязательно обновите id в разметке activity_main, чтобы добавить новые поля
+        params[0] = findViewById(R.id.editTextText3);   // Щелочное число
+        params[1] = findViewById(R.id.editTextText24);  // Вязкость кинематическая
+        params[2] = findViewById(R.id.editTextText23);  // Испаряемость
+        params[3] = findViewById(R.id.editTextText25);  // Температура вспышки
 
-            params[4] = findViewById(R.id.editTextTextAcidValue);  // Кислотное число (новое, создайте в layout, например editTextTextAcidValue)
-            params[5] = findViewById(R.id.editTextTextDisperse);   // Дисперсионно стабилизирующие свойства (новое)
-            params[6] = findViewById(R.id.editTextTextDensity);    // Плотность (новое)
-            params[7] = findViewById(R.id.editTextTextImpurities); // Содержание нерастворимых примесей (новое)
+        params[4] = findViewById(R.id.editTextText);  // Кислотное число (новое, создайте в layout, например editTextTextAcidValue)
+        params[5] = findViewById(R.id.editTextText2);   // Дисперсионно стабилизирующие свойства (новое)
+        params[6] = findViewById(R.id.editTextText4);    // Плотность (новое)
+        params[7] = findViewById(R.id.editTextText5); // Содержание нерастворимых примесей (новое)
         // Подстановка параметров из Intent
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("parameters")) {

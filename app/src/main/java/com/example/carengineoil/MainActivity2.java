@@ -9,12 +9,9 @@ import android.view.View;
 import android.content.Intent;
 import androidx.appcompat.app.AlertDialog;
 
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-
 public class MainActivity2 extends AppCompatActivity {
 
-    // Новые поля для ввода характеристик автомобиля
+    // Поля для ввода характеристик автомобиля
     private EditText carBrandEditText, carModelEditText, carYearEditText, engineTypeEditText;
 
     @Override
@@ -22,25 +19,22 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // Инициализация EditText для автомобиля — проверьте, что в layout есть соответствующие id
-        carBrandEditText = findViewById(R.id.editTextCarBrand);
-        carModelEditText = findViewById(R.id.editTextCarModel);
-        carYearEditText = findViewById(R.id.editTextCarYear);
-        engineTypeEditText = findViewById(R.id.editTextEngineType);
+        // Инициализация полей — убедитесь, что в layout activity_main2.xml есть такие id
+        carBrandEditText = findViewById(R.id.editTextText6);
+        carModelEditText = findViewById(R.id.editTextText7);
+        carYearEditText = findViewById(R.id.editTextText8);
+        engineTypeEditText = findViewById(R.id.editTextText9);
 
-        Button buttonSelectOil = findViewById(R.id.button7); // Кнопка для запуска подбора масла
-        Button buttonBack = findViewById(R.id.button);       // Кнопка "Назад"
-        Button btnClear = findViewById(R.id.button4);         // Кнопка очистки
-        Button buttonGoToInfo = findViewById(R.id.button5);  // Кнопка перехода к информационной странице
+        Button buttonSelectOil = findViewById(R.id.button7); // кнопка запуска подбора масла
+        Button btnClear = findViewById(R.id.button4);        // кнопка очистки полей
+        Button buttonGoToInfo = findViewById(R.id.button5);  // переход к информационной странице
 
-        // Переход к инфо активности
-        buttonGoToInfo.setOnClickListener(view -> {
-            startActivity(new Intent(MainActivity2.this, InfoActivity4.class));
-        });
+        // Переход на информационный экран
+        buttonGoToInfo.setOnClickListener(view ->
+                startActivity(new Intent(MainActivity2.this, InfoActivity4.class)));
 
-        // Обработка кнопки подбора масла
+        // Обработка клика по кнопке подбора масла
         buttonSelectOil.setOnClickListener(v -> {
-            // Получаем данные пользователя
             String brand = carBrandEditText.getText().toString().trim();
             String model = carModelEditText.getText().toString().trim();
             String yearStr = carYearEditText.getText().toString().trim();
@@ -63,16 +57,10 @@ public class MainActivity2 extends AppCompatActivity {
                 return;
             }
 
-            // Здесь добавьте вызов функции подбора масла по введённым данным,
-            // например, передайте данные в базу или покажите рекомендации.
             performOilSelection(brand, model, year, engineType);
         });
 
-        buttonBack.setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity2.this, MainActivity.class));
-            finish();
-        });
-
+        // Очистка полей
         btnClear.setOnClickListener(v -> {
             carBrandEditText.setText("");
             carModelEditText.setText("");
@@ -82,21 +70,21 @@ public class MainActivity2 extends AppCompatActivity {
         });
     }
 
+    // Метод подбора масла — здесь реализовать вашу логику
     private void performOilSelection(String brand, String model, int year, String engineType) {
-        // Заглушка: Здесь реализуйте логику подбора масла по параметрам
-        // Можно вызвать другую активити с результатами, например:
+        String message = "Подбор масла для " + brand + " " + model + ", " + year + " г.в., двигатель: " + engineType;
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
+        // Пример: можно запустить новую активность с результатами подбора
         // Intent intent = new Intent(this, OilResultsActivity.class);
         // intent.putExtra("brand", brand);
         // intent.putExtra("model", model);
         // intent.putExtra("year", year);
         // intent.putExtra("engineType", engineType);
         // startActivity(intent);
-
-        // Пока что просто выводим сообщение
-        String message = "Подбор масла для " + brand + " " + model + ", " + year + " г.в., двигатель: " + engineType;
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 
+    // Всплывающее окно с сообщением об ошибке
     private void showAlertDialog(String title, String message) {
         new AlertDialog.Builder(this)
                 .setTitle(title)
