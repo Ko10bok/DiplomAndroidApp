@@ -56,7 +56,7 @@
             android:id="@+id/textView24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1. Распаковать содержимое экспресс - лаборатории."
+            android:text="Здесь будет находиться подробная инстукция по использованию лаборатории и приложения"
             android:textAlignment="viewStart"
             android:textColor="#FAF3FB"
             android:textSize="16sp" />
