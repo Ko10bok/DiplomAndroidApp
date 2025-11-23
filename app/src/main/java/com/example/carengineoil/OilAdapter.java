@@ -12,12 +12,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class OilAdapter extends RecyclerView.Adapter<OilAdapter.OilViewHolder> {
 
     private List<Oil> oilList;
     private OnOilClickListener listener;
+    private Set<Integer> selectedPositions = new HashSet<>();
+    private boolean isSelectionMode = false;
 
     public interface OnOilClickListener {
         void onOilClick(Oil oil);
@@ -29,11 +34,50 @@ public class OilAdapter extends RecyclerView.Adapter<OilAdapter.OilViewHolder> {
 
     public void updateData(List<Oil> newOilList) {
         this.oilList = newOilList;
+        clearSelection();
         notifyDataSetChanged();
     }
 
     public void setOnOilClickListener(OnOilClickListener listener) {
         this.listener = listener;
+    }
+
+    public void setSelectionMode(boolean selectionMode) {
+        isSelectionMode = selectionMode;
+        if (!selectionMode) {
+            clearSelection();
+        }
+        notifyDataSetChanged();
+    }
+
+    public boolean isSelectionMode() {
+        return isSelectionMode;
+    }
+
+    public void toggleSelection(int position) {
+        if (selectedPositions.contains(position)) {
+            selectedPositions.remove(position);
+        } else {
+            selectedPositions.add(position);
+        }
+        notifyItemChanged(position);
+    }
+
+    public void clearSelection() {
+        selectedPositions.clear();
+        notifyDataSetChanged();
+    }
+
+    public int getSelectedItemCount() {
+        return selectedPositions.size();
+    }
+
+    public List<Oil> getSelectedOils() {
+        List<Oil> selected = new ArrayList<>();
+        for (Integer pos : selectedPositions) {
+            selected.add(oilList.get(pos));
+        }
+        return selected;
     }
 
     @NonNull
@@ -64,7 +108,6 @@ public class OilAdapter extends RecyclerView.Adapter<OilAdapter.OilViewHolder> {
             for (int i = 0; i < paramPairs.length; i++) {
                 String paramPair = paramPairs[i];
 
-                // Проверяем, начинается ли параметр с одного из failedParams
                 boolean isFailed = false;
                 for (String failedParam : failedParams) {
                     if (paramPair.startsWith(failedParam)) {
@@ -78,7 +121,6 @@ public class OilAdapter extends RecyclerView.Adapter<OilAdapter.OilViewHolder> {
                 int end = spannable.length();
 
                 if (isFailed) {
-                    // Выделяем красным цветом только проблемный параметр
                     spannable.setSpan(new ForegroundColorSpan(Color.RED), start, end, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
 
@@ -90,17 +132,32 @@ public class OilAdapter extends RecyclerView.Adapter<OilAdapter.OilViewHolder> {
             holder.textParams.setText(spannable);
         }
 
-        // Обработка клика по элементу списка
+        // Подсветка выбранных элементов
+        holder.itemView.setBackgroundColor(selectedPositions.contains(position) ? Color.LTGRAY : Color.WHITE);
+
         holder.itemView.setOnClickListener(v -> {
-            if (listener != null) {
-                listener.onOilClick(oil);
+            if (isSelectionMode) {
+                toggleSelection(position);
+            } else {
+                if (listener != null) {
+                    listener.onOilClick(oil);
+                }
             }
+        });
+
+        holder.itemView.setOnLongClickListener(v -> {
+            if (!isSelectionMode) {
+                setSelectionMode(true);
+                toggleSelection(position);
+                return true;
+            }
+            return false;
         });
     }
 
     @Override
     public int getItemCount() {
-        return oilList.size();
+        return oilList != null ? oilList.size() : 0;
     }
 
     static class OilViewHolder extends RecyclerView.ViewHolder {

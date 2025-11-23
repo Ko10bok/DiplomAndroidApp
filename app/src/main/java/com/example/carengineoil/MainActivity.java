@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("parameters")) {
             String parameters = intent.getStringExtra("parameters");
-            if (parameters != null && !parameters.isEmpty()) {
+            if (parameters != null) {
                 String[] pairs = parameters.split(",\\s*");
                 for (String pair : pairs) {
                     String[] keyValue = pair.split("=");
@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             }
-        
         }
+
 
         Button btnCheck = findViewById(R.id.button7);
         Button btnClear = findViewById(R.id.button4);
