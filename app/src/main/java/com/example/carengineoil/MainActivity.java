@@ -117,11 +117,24 @@ public class MainActivity extends AppCompatActivity {
             showSaveDialog("Проверка параметров", message, isGood, failedParams);
         });
 
+        // Переход во вторую активити (MainActivity2)
+        btnGoToSecond.setOnClickListener(v -> {
+            Intent intentToSecond = new Intent(MainActivity.this, MainActivity2.class);
+            startActivity(intentToSecond);
+        });
+
+        // Переход в четвёртую активити (InfoActivity4)
+        buttonGoTo4.setOnClickListener(v -> {
+            Intent intentToInfo = new Intent(MainActivity.this, InfoActivity4.class);
+            startActivity(intentToInfo);
+        });
+
         btnClear.setOnClickListener(v -> {
             Intent intentToList = new Intent(MainActivity.this, MainActivity3.class);
             startActivity(intentToList);
         });
     }
+
 
     private void showAlertDialog(String title, String message) {
         new AlertDialog.Builder(this)
