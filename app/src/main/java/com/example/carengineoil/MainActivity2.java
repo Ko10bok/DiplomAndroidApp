@@ -12,6 +12,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 public class MainActivity2 extends AppCompatActivity {
 
+
     private EditText[] params = new EditText[4];
     private double[][] ranges = {
             {0.5, 3.0},      // Кислотное число
@@ -59,6 +60,7 @@ public class MainActivity2 extends AppCompatActivity {
         Button buttonCheck = findViewById(R.id.button7);
         Button btnClear = findViewById(R.id.button4);
         Button buttonGoTo4 = findViewById(R.id.button5);
+        Button btnGoToSecond = findViewById(R.id.button3);
 
         buttonGoTo4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +114,16 @@ public class MainActivity2 extends AppCompatActivity {
         btnClear.setOnClickListener(v -> {
             Intent intentClear = new Intent(MainActivity2.this, MainActivity3.class);
             startActivity(intentClear);
+        });
+        btnGoToSecond.setOnClickListener(v -> {
+            Intent intentToSecond = new Intent(MainActivity2.this, MainActivity.class);
+            startActivity(intentToSecond);
+        });
+
+        // Переход в InfoActivity4
+        buttonGoTo4.setOnClickListener(v -> {
+            Intent intentToInfo = new Intent(MainActivity2.this, InfoActivity4.class);
+            startActivity(intentToInfo);
         });
     }
 

@@ -176,7 +176,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
-        android:text="Подбор масла"
+        android:text="Подбор масла(Демо)"
         android:textAlignment="center"
         android:textColor="#FCF5FD"
         android:textSize="24sp"
@@ -188,7 +188,7 @@
     <TextView
         android:id="@+id/textView19"
         android:layout_width="158dp"
-        android:layout_height="39dp"
+        android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="200dp"
         android:layout_marginEnd="16dp"

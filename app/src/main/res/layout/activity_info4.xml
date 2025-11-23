@@ -43,9 +43,9 @@
     <ScrollView
         android:layout_width="403dp"
         android:layout_height="595dp"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="1dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonBack"
         app:layout_constraintEnd_toEndOf="parent"
