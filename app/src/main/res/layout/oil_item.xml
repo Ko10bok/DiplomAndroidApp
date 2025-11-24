@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#3f3F3F"
         android:orientation="vertical"
         android:padding="12dp">
 
@@ -20,15 +21,15 @@
             android:layout_height="wrap_content"
             android:text="Название масла"
             android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textParams"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:text="Параметры"
-            android:textSize="14sp"
-            android:layout_marginTop="4dp"/>
+            android:textSize="14sp" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -100,6 +100,7 @@ public class OilAdapter extends RecyclerView.Adapter<OilAdapter.OilViewHolder> {
         String parameters = oil.getParameters();
         String failedParamsStr = oil.getFailedParameters();
 
+
         if (failedParamsStr == null || failedParamsStr.isEmpty()) {
             holder.textParams.setTextColor(Color.BLACK);
             holder.textParams.setText(parameters);
