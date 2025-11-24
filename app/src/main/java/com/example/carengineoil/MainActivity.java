@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             String failedParams = isGood ? "" : errors.toString();
 
             String message = isGood ? "Масло удовлетворяет требованиям" :
-                    "Масло не удовлетворяет требованиям по параметрам:\n" + failedParams + "\nСохранить с пометкой 'Не годно'?";
+                    "Масло не удовлетворяет требованиям по параметрам:\n" + failedParams + "\nСохранить с пометкой 'Непригодно'?";
 
             showSaveDialog("Проверка параметров", message, isGood, failedParams);
         });
@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveOilData(String oilName, boolean isGood, String failedParams, String sourceActivity) {
-        String fullName = oilName + (isGood ? "(Годно)" : "(Не годно)");
+        String fullName = oilName + (isGood ? "(Пригодно)" : "(Непригодно)");
 
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {

@@ -42,6 +42,10 @@ public class OilAdapter extends RecyclerView.Adapter<OilAdapter.OilViewHolder> {
         this.listener = listener;
     }
 
+    public List<Oil> getOilList() {
+        return oilList;
+    }
+
     public void setSelectionMode(boolean selectionMode) {
         isSelectionMode = selectionMode;
         if (!selectionMode) {
