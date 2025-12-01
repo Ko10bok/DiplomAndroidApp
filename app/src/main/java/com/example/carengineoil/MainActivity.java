@@ -13,7 +13,7 @@ import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText[] params = new EditText[8]; // 4 параметра из MainActivity + 4 из MainActivity2
+    private EditText[] params = new EditText[9]; // 4 параметра из MainActivity + 4 из MainActivity2
 
     private double[][] ranges = {
             // Параметры из MainActivity (текущие)
