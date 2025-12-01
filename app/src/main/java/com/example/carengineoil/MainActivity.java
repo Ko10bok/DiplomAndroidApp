@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.view.View;
 import android.content.Intent;
 import androidx.appcompat.app.AlertDialog;
 
@@ -26,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
             {0.5, 3.0},      // Кислотное число
             {1.0, 6.0},      // Дисперсионно стабилизирующие свойства
             {12.5, 16.3},    // Плотность
-            {0.14, 1.0}      // Содержание нерастворимых примесей
+            {0.14, 1.0},      // Содержание нерастворимых примесей
+            {0, 200}
     };
 
     private String[] paramNames = {
@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
             "Кислотное число",
             "Дисперсионно стабилизирующие свойства",
             "Плотность",
-            "Содержание нерастворимых примесей"
+            "Содержание нерастворимых примесей",
+            "Температура двигателя"
     };
 
     @Override
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         params[5] = findViewById(R.id.editTextText2);   // Дисперсионно стабилизирующие свойства (новое)
         params[6] = findViewById(R.id.editTextText4);    // Плотность (новое)
         params[7] = findViewById(R.id.editTextText5); // Содержание нерастворимых примесей (новое)
+        params[8] = findViewById(R.id.editText10);
         // Подстановка параметров из Intent
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("parameters")) {
