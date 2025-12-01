@@ -51,14 +51,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
 
-        btnSelectMode.setOnClickListener(v -> {
-            isSelectionMode = true;
-            if (oilAdapter != null) {
-                oilAdapter.setSelectionMode(true);
-            }
-            btnSelectMode.setVisibility(View.GONE);
-            btnDelete.setVisibility(View.VISIBLE);
-        });
+        btnSelectMode.setOnClickListener(v -> enterSelectionMode());
 
         btnDelete.setOnClickListener(v -> {
             if (oilAdapter == null) return;
@@ -72,16 +65,35 @@ public class MainActivity3 extends AppCompatActivity {
                     List<Oil> oils = db.oilDao().getAllOils();
                     runOnUiThread(() -> {
                         oilAdapter.updateData(oils);
-                        oilAdapter.setSelectionMode(false);
-                        isSelectionMode = false;
-                        btnDelete.setVisibility(View.GONE);
-                        btnSelectMode.setVisibility(View.VISIBLE);
+                        // Очищаем выделение после удаления
+                        oilAdapter.clearSelection();
                     });
                 });
             }
         });
 
         loadOils();
+    }
+
+    private void enterSelectionMode() {
+        isSelectionMode = true;
+        if (oilAdapter != null) {
+            oilAdapter.setSelectionMode(true);
+        }
+        // Меняем текст кнопки на "Применить"
+        btnSelectMode.setText("Применить");
+        btnDelete.setVisibility(View.VISIBLE);
+    }
+
+    private void exitSelectionMode() {
+        isSelectionMode = false;
+        if (oilAdapter != null) {
+            oilAdapter.setSelectionMode(false);
+            oilAdapter.clearSelection(); // Очищаем выделение
+        }
+        // Возвращаем исходный текст кнопки
+        btnSelectMode.setText("Открыть"); // или "Выбрать" - какой был изначально
+        btnDelete.setVisibility(View.GONE);
     }
 
     private void loadOils() {
