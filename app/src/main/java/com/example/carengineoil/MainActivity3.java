@@ -51,25 +51,19 @@ public class MainActivity3 extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
 
-        btnSelectMode.setOnClickListener(v -> enterSelectionMode());
+        btnSelectMode.setOnClickListener(v -> {
+            if (!isSelectionMode) {
+                // Вход в режим выделения
+                enterSelectionMode();
+            } else {
+                // Удаление выбранных элементов по кнопке "Применить"
+                deleteSelectedOils();
+            }
+        });
 
         btnDelete.setOnClickListener(v -> {
-            if (oilAdapter == null) return;
-            List<Oil> selectedOils = oilAdapter.getSelectedOils();
-            if (!selectedOils.isEmpty()) {
-                Executor executor = Executors.newSingleThreadExecutor();
-                executor.execute(() -> {
-                    for (Oil oil : selectedOils) {
-                        db.oilDao().delete(oil);
-                    }
-                    List<Oil> oils = db.oilDao().getAllOils();
-                    runOnUiThread(() -> {
-                        oilAdapter.updateData(oils);
-                        // Очищаем выделение после удаления
-                        oilAdapter.clearSelection();
-                    });
-                });
-            }
+            // Кнопка отмены - выход из режима выделения
+            exitSelectionMode();
         });
 
         loadOils();
@@ -82,18 +76,46 @@ public class MainActivity3 extends AppCompatActivity {
         }
         // Меняем текст кнопки на "Применить"
         btnSelectMode.setText("Применить");
+        btnDelete.setText("Отмена");
         btnDelete.setVisibility(View.VISIBLE);
+    }
+
+    private void deleteSelectedOils() {
+        if (oilAdapter == null) return;
+        List<Oil> selectedOils = oilAdapter.getSelectedOils();
+        if (!selectedOils.isEmpty()) {
+            Executor executor = Executors.newSingleThreadExecutor();
+            executor.execute(() -> {
+                // Удаляем выбранные масла из БД
+                for (Oil oil : selectedOils) {
+                    db.oilDao().delete(oil);
+                }
+                // Загружаем обновленный список
+                List<Oil> oils = db.oilDao().getAllOils();
+                runOnUiThread(() -> {
+                    // Обновляем адаптер
+                    oilAdapter.updateData(oils);
+                    // **ГЛАВНОЕ ИЗМЕНЕНИЕ: Вызываем exitSelectionMode() для полного сброса состояния**
+                    exitSelectionMode();
+                });
+            });
+        } else {
+            // Если ничего не выбрано, выходим из режима
+            exitSelectionMode();
+        }
     }
 
     private void exitSelectionMode() {
         isSelectionMode = false;
         if (oilAdapter != null) {
             oilAdapter.setSelectionMode(false);
-            oilAdapter.clearSelection(); // Очищаем выделение
+            oilAdapter.clearSelection();
         }
-        // Возвращаем исходный текст кнопки
-        btnSelectMode.setText("Открыть"); // или "Выбрать" - какой был изначально
+        // **ВЕРНУЛИСЬ В ИСХОДНОЕ СОСТОЯНИЕ как в MainActivity2**
+        btnSelectMode.setText("Открыть");
         btnDelete.setVisibility(View.GONE);
+        // Сбрасываем текст кнопки удаления (на случай если она была видна)
+        btnDelete.setText("Удалить"); // или исходный текст из layout
     }
 
     private void loadOils() {
@@ -125,7 +147,6 @@ public class MainActivity3 extends AppCompatActivity {
                             }
                         }
                     });
-
                 } else {
                     oilAdapter.updateData(oils);
                 }
@@ -133,3 +154,4 @@ public class MainActivity3 extends AppCompatActivity {
         });
     }
 }
+
