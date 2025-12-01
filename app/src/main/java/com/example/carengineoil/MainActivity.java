@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Инициализация EditText — обязательно обновите id в разметке activity_main, чтобы добавить новые поля
         params[0] = findViewById(R.id.editTextText3);   // Щелочное число
-        params[1] = findViewById(R.id.editTextText24);  // Вязкость кинематическая
-        params[2] = findViewById(R.id.editTextText23);  // Испаряемость
+        params[1] = findViewById(R.id.editTextText23);  // Вязкость кинематическая
+        params[2] = findViewById(R.id.editTextText24);  // Испаряемость
         params[3] = findViewById(R.id.editTextText25);  // Температура вспышки
 
         params[4] = findViewById(R.id.editTextText);  // Кислотное число (новое, создайте в layout, например editTextTextAcidValue)
