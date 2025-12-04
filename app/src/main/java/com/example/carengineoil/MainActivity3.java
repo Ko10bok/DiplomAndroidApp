@@ -52,7 +52,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         btnSelectMode.setOnClickListener(v -> {
             if (!isSelectionMode) {
-                // Вход в режим выделения
+                // Вход в режим открытия/выделения
                 enterSelectionMode();
             } else {
                 // Удаление выбранных элементов по кнопке "Применить"
@@ -91,7 +91,6 @@ public class MainActivity3 extends AppCompatActivity {
                 List<Oil> oils = db.oilDao().getAllOils();
                 runOnUiThread(() -> {
                     oilAdapter.updateData(oils);
-                    // НЕ вызываем exitSelectionMode(), остаёмся в режиме выделения
                     oilAdapter.clearSelection(); // очищаем выделение после удаления
                     // Кнопки остаются с текстом "Применить" и "Отмена"
                     btnSelectMode.setText("Применить");
@@ -104,7 +103,6 @@ public class MainActivity3 extends AppCompatActivity {
         }
     }
 
-
     private void exitSelectionMode() {
         isSelectionMode = false;
         if (oilAdapter != null) {
@@ -115,7 +113,7 @@ public class MainActivity3 extends AppCompatActivity {
         btnDelete.setText("Удалить");       // Возвращаем "Удалить"
         btnDelete.setVisibility(View.VISIBLE); // Делаем кнопку "Удалить" видимой
     }
-    
+
     private void loadOils() {
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
@@ -125,25 +123,16 @@ public class MainActivity3 extends AppCompatActivity {
                     oilAdapter = new OilAdapter(oils);
                     recyclerView.setAdapter(oilAdapter);
 
+                    // **ИЗМЕНЕНИЕ: клик по маслу работает ТОЛЬКО в режиме выделения**
                     oilAdapter.setOnOilClickListener(oil -> {
-                        if (!isSelectionMode) {
-                            Intent intent;
-                            if ("MainActivity".equals(oil.getSourceActivity())) {
-                                intent = new Intent(MainActivity3.this, MainActivity.class);
-                            } else if ("MainActivity2".equals(oil.getSourceActivity())) {
-                                intent = new Intent(MainActivity3.this, MainActivity2.class);
-                            } else {
-                                intent = new Intent(MainActivity3.this, MainActivity.class);
-                            }
-                            intent.putExtra("oilName", oil.getName());
-                            intent.putExtra("parameters", oil.getParameters());
-                            startActivity(intent);
-                        } else {
+                        if (isSelectionMode) {
+                            // Только в режиме выделения можем выделять элементы
                             int pos = oilAdapter.getOilList().indexOf(oil);
                             if (pos != -1) {
                                 oilAdapter.toggleSelection(pos);
                             }
                         }
+                        // **УДАЛЕНО: открытие масла по клику в обычном режиме**
                     });
                 } else {
                     oilAdapter.updateData(oils);
@@ -152,4 +141,3 @@ public class MainActivity3 extends AppCompatActivity {
         });
     }
 }
-
