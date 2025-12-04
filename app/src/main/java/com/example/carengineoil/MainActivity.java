@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             {1.0, 6.0},      // Дисперсионно стабилизирующие свойства
             {12.5, 16.3},    // Плотность
             {0.14, 1.0},      // Содержание нерастворимых примесей
-            {0, 200}
+            {0, 280}
     };
 
     private String[] paramNames = {
@@ -78,7 +78,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
 
         Button btnCheck = findViewById(R.id.button7);
         Button btnClear = findViewById(R.id.button4);
@@ -137,8 +136,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intentToList);
         });
     }
-
-
     private void showAlertDialog(String title, String message) {
         new AlertDialog.Builder(this)
                 .setTitle(title)
@@ -147,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .show();
     }
-
     private void showSaveDialog(String title, String message, boolean isGood, String failedParams) {
         final EditText input = new EditText(this);
         input.setHint("Введите название масла");
@@ -169,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .show();
     }
-
     private void saveOilData(String oilName, boolean isGood, String failedParams, String sourceActivity) {
         String fullName = oilName + (isGood ? "(Пригодно)" : "(Непригодно)");
 
@@ -185,7 +180,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void insertOil(String fullName, boolean isGood, String failedParams, String sourceActivity) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < params.length; i++) {
@@ -201,7 +195,6 @@ public class MainActivity extends AppCompatActivity {
             OilDB.getInstance(getApplicationContext()).oilDao().insert(oil);
         });
     }
-
     private void showOverwriteDialog(String oilName, boolean isGood, String failedParams, String sourceActivity) {
         new AlertDialog.Builder(this)
                 .setTitle("Имя занято")
@@ -225,6 +218,4 @@ public class MainActivity extends AppCompatActivity {
                 .setCancelable(false)
                 .show();
     }
-
-
 }

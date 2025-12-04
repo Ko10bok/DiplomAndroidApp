@@ -1,6 +1,5 @@
 package com.example.carengineoil;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -86,24 +85,25 @@ public class MainActivity3 extends AppCompatActivity {
         if (!selectedOils.isEmpty()) {
             Executor executor = Executors.newSingleThreadExecutor();
             executor.execute(() -> {
-                // Удаляем выбранные масла из БД
                 for (Oil oil : selectedOils) {
                     db.oilDao().delete(oil);
                 }
-                // Загружаем обновленный список
                 List<Oil> oils = db.oilDao().getAllOils();
                 runOnUiThread(() -> {
-                    // Обновляем адаптер
                     oilAdapter.updateData(oils);
-                    // **ГЛАВНОЕ ИЗМЕНЕНИЕ: Вызываем exitSelectionMode() для полного сброса состояния**
-                    exitSelectionMode();
+                    // НЕ вызываем exitSelectionMode(), остаёмся в режиме выделения
+                    oilAdapter.clearSelection(); // очищаем выделение после удаления
+                    // Кнопки остаются с текстом "Применить" и "Отмена"
+                    btnSelectMode.setText("Применить");
+                    btnDelete.setText("Отмена");
+                    btnDelete.setVisibility(View.VISIBLE);
                 });
             });
         } else {
-            // Если ничего не выбрано, выходим из режима
             exitSelectionMode();
         }
     }
+
 
     private void exitSelectionMode() {
         isSelectionMode = false;
@@ -111,12 +111,12 @@ public class MainActivity3 extends AppCompatActivity {
             oilAdapter.setSelectionMode(false);
             oilAdapter.clearSelection();
         }
-        // **ВЕРНУЛИСЬ В ИСХОДНОЕ СОСТОЯНИЕ как в MainActivity2**
-        btnSelectMode.setText("Открыть");
-        btnDelete.setVisibility(View.GONE);
-        // Сбрасываем текст кнопки удаления (на случай если она была видна)
-        btnDelete.setText("Удалить"); // или исходный текст из layout
+        btnSelectMode.setText("Открыть");  // ← Возвращается "Открыть"
+        btnDelete.setVisibility(View.VISIBLE); // ← Кнопка "Отмена" скрывается
+        btnDelete.setText("Удалить");       // ← Текст сбрасывается
     }
+
+
 
     private void loadOils() {
         Executor executor = Executors.newSingleThreadExecutor();
