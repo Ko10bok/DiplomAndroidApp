@@ -111,13 +111,11 @@ public class MainActivity3 extends AppCompatActivity {
             oilAdapter.setSelectionMode(false);
             oilAdapter.clearSelection();
         }
-        btnSelectMode.setText("Открыть");  // ← Возвращается "Открыть"
-        btnDelete.setVisibility(View.VISIBLE); // ← Кнопка "Отмена" скрывается
-        btnDelete.setText("Удалить");       // ← Текст сбрасывается
+        btnSelectMode.setText("Открыть");  // Возвращаем "Открыть"
+        btnDelete.setText("Удалить");       // Возвращаем "Удалить"
+        btnDelete.setVisibility(View.VISIBLE); // Делаем кнопку "Удалить" видимой
     }
-
-
-
+    
     private void loadOils() {
         Executor executor = Executors.newSingleThreadExecutor();
         executor.execute(() -> {
