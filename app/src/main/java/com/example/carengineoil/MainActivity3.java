@@ -45,8 +45,8 @@ public class MainActivity3 extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         btnBack = findViewById(R.id.button2);
-        btnSelectMode = findViewById(R.id.button8);
-        btnDelete = findViewById(R.id.button9);
+        btnSelectMode = findViewById(R.id.button9);
+        btnDelete = findViewById(R.id.button8);
 
         btnBack.setOnClickListener(v -> finish());
 
@@ -72,12 +72,13 @@ public class MainActivity3 extends AppCompatActivity {
         isSelectionMode = true;
         if (oilAdapter != null) {
             oilAdapter.setSelectionMode(true);
+            oilAdapter.notifyDataSetChanged(); // ← ДОБАВИТЬ ЭТУ СТРОКУ
         }
-        // Меняем текст кнопки на "Применить"
         btnSelectMode.setText("Применить");
         btnDelete.setText("Отмена");
         btnDelete.setVisibility(View.VISIBLE);
     }
+
 
     private void deleteSelectedOils() {
         if (oilAdapter == null) return;
@@ -91,7 +92,8 @@ public class MainActivity3 extends AppCompatActivity {
                 List<Oil> oils = db.oilDao().getAllOils();
                 runOnUiThread(() -> {
                     oilAdapter.updateData(oils);
-                    oilAdapter.clearSelection(); // очищаем выделение после удаления
+                    oilAdapter.clearSelection();
+                    oilAdapter.notifyDataSetChanged();// очищаем выделение после удаления
                     // Кнопки остаются с текстом "Применить" и "Отмена"
                     btnSelectMode.setText("Применить");
                     btnDelete.setText("Отмена");
@@ -108,6 +110,7 @@ public class MainActivity3 extends AppCompatActivity {
         if (oilAdapter != null) {
             oilAdapter.setSelectionMode(false);
             oilAdapter.clearSelection();
+            oilAdapter.notifyDataSetChanged();
         }
         btnSelectMode.setText("Открыть");  // Возвращаем "Открыть"
         btnDelete.setText("Удалить");       // Возвращаем "Удалить"
