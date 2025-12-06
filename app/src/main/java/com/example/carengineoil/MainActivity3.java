@@ -123,16 +123,26 @@ public class MainActivity3 extends AppCompatActivity {
                     oilAdapter = new OilAdapter(oils);
                     recyclerView.setAdapter(oilAdapter);
 
-                    // **ИЗМЕНЕНИЕ: клик по маслу работает ТОЛЬКО в режиме выделения**
+                    // **НОВАЯ ЛОГИКА: в режиме выделения открываем масло по клику**
                     oilAdapter.setOnOilClickListener(oil -> {
                         if (isSelectionMode) {
-                            // Только в режиме выделения можем выделять элементы
-                            int pos = oilAdapter.getOilList().indexOf(oil);
-                            if (pos != -1) {
-                                oilAdapter.toggleSelection(pos);
+                            // В режиме выделения открываем активность с параметрами масла
+                            Intent intent;
+                            if ("MainActivity".equals(oil.getSourceActivity())) {
+                                intent = new Intent(MainActivity3.this, MainActivity.class);
+                            } else if ("MainActivity2".equals(oil.getSourceActivity())) {
+                                intent = new Intent(MainActivity3.this, MainActivity2.class);
+                            } else {
+                                intent = new Intent(MainActivity3.this, MainActivity.class);
                             }
+                            intent.putExtra("oilName", oil.getName());
+                            intent.putExtra("parameters", oil.getParameters());
+                            startActivity(intent);
+
+                            // Выходим из режима выделения после открытия
+                            exitSelectionMode();
                         }
-                        // **УДАЛЕНО: открытие масла по клику в обычном режиме**
+                        // В обычном режиме ничего не делаем
                     });
                 } else {
                     oilAdapter.updateData(oils);
@@ -140,4 +150,5 @@ public class MainActivity3 extends AppCompatActivity {
             });
         });
     }
+
 }
