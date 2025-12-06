@@ -45,8 +45,8 @@ public class MainActivity3 extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         btnBack = findViewById(R.id.button2);
-        btnSelectMode = findViewById(R.id.button8);
-        btnDelete = findViewById(R.id.button9);
+        btnSelectMode = findViewById(R.id.button9);
+        btnDelete = findViewById(R.id.button8);
 
         btnBack.setOnClickListener(v -> finish());
 
