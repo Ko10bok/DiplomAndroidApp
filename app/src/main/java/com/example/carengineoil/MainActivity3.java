@@ -24,7 +24,8 @@ public class MainActivity3 extends AppCompatActivity {
     private OilAdapter oilAdapter;
 
     private Button btnBack, btnOpenMode, btnDeleteMode;
-    private boolean isSelectionMode = false;
+    private boolean isOpenMode = false;
+    private boolean isDeleteMode = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,40 +46,51 @@ public class MainActivity3 extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         btnBack = findViewById(R.id.button2);
-        btnOpenMode = findViewById(R.id.button8);   // button9 = "Открыть"
-        btnDeleteMode = findViewById(R.id.button9); // button8 = "Удалить"
+        btnOpenMode = findViewById(R.id.button8);   // "Открыть"
+        btnDeleteMode = findViewById(R.id.button9); // "Удалить"
 
         btnBack.setOnClickListener(v -> finish());
 
-        // button9 "Открыть" → вход в режим / "Применить" → открыть
+        // button8 "Открыть" → режим открытия
         btnOpenMode.setOnClickListener(v -> {
-            if (!isSelectionMode) {
-                enterSelectionMode();
-            } else {
+            if (!isOpenMode && !isDeleteMode) {
+                enterOpenMode();
+            } else if (isOpenMode) {
                 openSelectedOil();
             }
         });
 
-        // button8 "Удалить" → "Отмена" → выход из режима
+        // button9 "Удалить" → режим удаления
         btnDeleteMode.setOnClickListener(v -> {
-            exitSelectionMode();
+            if (!isDeleteMode && !isOpenMode) {
+                enterDeleteMode();
+            } else if (isDeleteMode) {
+                deleteSelectedOils();
+            }
         });
 
         loadOils();
     }
 
-    private void enterSelectionMode() {
-        isSelectionMode = true;
+    private void enterOpenMode() {
+        isOpenMode = true;
         if (oilAdapter != null) {
             oilAdapter.setSelectionMode(true);
             oilAdapter.notifyDataSetChanged();
         }
-        // **СРАЗУ кнопки "Применить" и "Отмена"**
-        btnOpenMode.setText("Применить");    // button9
-        btnDeleteMode.setText("Отмена");     // button8
-        btnDeleteMode.setVisibility(View.VISIBLE);
+        btnOpenMode.setText("Применить");
+        btnDeleteMode.setText("Отмена");
     }
 
+    private void enterDeleteMode() {
+        isDeleteMode = true;
+        if (oilAdapter != null) {
+            oilAdapter.setSelectionMode(true);
+            oilAdapter.notifyDataSetChanged();
+        }
+        btnOpenMode.setText("Отмена");
+        btnDeleteMode.setText("Удалить");
+    }
 
     private void openSelectedOil() {
         if (oilAdapter == null) {
@@ -88,8 +100,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         List<Oil> selectedOils = oilAdapter.getSelectedOils();
         if (!selectedOils.isEmpty()) {
-            Oil oil = selectedOils.get(0); // Первое выбранное масло
-
+            Oil oil = selectedOils.get(0);
             Intent intent;
             if ("MainActivity".equals(oil.getSourceActivity())) {
                 intent = new Intent(MainActivity3.this, MainActivity.class);
@@ -102,20 +113,40 @@ public class MainActivity3 extends AppCompatActivity {
             intent.putExtra("parameters", oil.getParameters());
             startActivity(intent);
         }
-        // Автоматический выход из режима
+        exitSelectionMode();
+    }
+
+    private void deleteSelectedOils() {
+        if (oilAdapter == null) return;
+
+        List<Oil> selectedOils = oilAdapter.getSelectedOils();
+        if (!selectedOils.isEmpty()) {
+            Executor executor = Executors.newSingleThreadExecutor();
+            executor.execute(() -> {
+                for (Oil oil : selectedOils) {
+                    db.oilDao().delete(oil);
+                }
+                List<Oil> oils = db.oilDao().getAllOils();
+                runOnUiThread(() -> {
+                    oilAdapter.updateData(oils);
+                    oilAdapter.clearSelection();
+                });
+            });
+        }
         exitSelectionMode();
     }
 
     private void exitSelectionMode() {
-        isSelectionMode = false;
+        isOpenMode = false;
+        isDeleteMode = false;
         if (oilAdapter != null) {
             oilAdapter.setSelectionMode(false);
             oilAdapter.clearSelection();
             oilAdapter.notifyDataSetChanged();
         }
-        // Возврат к исходным текстам
-        btnOpenMode.setText("Открыть");   // button9
-        btnDeleteMode.setText("Отмена");  // button8
+        // Возврат к исходным кнопкам
+        btnOpenMode.setText("Открыть");
+        btnDeleteMode.setText("Удалить");
     }
 
     private void loadOils() {
@@ -128,8 +159,7 @@ public class MainActivity3 extends AppCompatActivity {
                     recyclerView.setAdapter(oilAdapter);
 
                     oilAdapter.setOnOilClickListener(oil -> {
-                        if (isSelectionMode) {
-                            // Выделяем для открытия
+                        if (isOpenMode || isDeleteMode) {
                             int pos = oilAdapter.getOilList().indexOf(oil);
                             if (pos != -1) {
                                 oilAdapter.toggleSelection(pos);
