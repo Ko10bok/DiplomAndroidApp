@@ -51,23 +51,27 @@ public class MainActivity3 extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
 
-        // button8 "Открыть" → режим открытия
+        // При нажатии на кнопку "Отмена" просто вызывайте exitSelectionMode(), а не finish().
+        btnDeleteMode.setOnClickListener(v -> {
+            if (isDeleteMode) {
+                exitSelectionMode();
+            } else if (!isOpenMode && !isDeleteMode) {
+                enterDeleteMode();
+            } else if (isOpenMode) {
+                exitSelectionMode();
+            }
+        });
         btnOpenMode.setOnClickListener(v -> {
             if (!isOpenMode && !isDeleteMode) {
                 enterOpenMode();
             } else if (isOpenMode) {
                 openSelectedOil();
+            } else if (isDeleteMode) {
+                exitSelectionMode();
             }
         });
 
-        // button9 "Удалить" → режим удаления
-        btnDeleteMode.setOnClickListener(v -> {
-            if (!isDeleteMode && !isOpenMode) {
-                enterDeleteMode();
-            } else if (isDeleteMode) {
-                deleteSelectedOils();
-            }
-        });
+
 
         loadOils();
     }
@@ -94,7 +98,7 @@ public class MainActivity3 extends AppCompatActivity {
 
     private void openSelectedOil() {
         if (oilAdapter == null) {
-            exitSelectionMode();
+            finish();  // ← ДОБАВИТЬ
             return;
         }
 
@@ -113,7 +117,7 @@ public class MainActivity3 extends AppCompatActivity {
             intent.putExtra("parameters", oil.getParameters());
             startActivity(intent);
         }
-        exitSelectionMode();
+        finish();  // ← ДОБАВИТЬ: возврат на MainActivity3 после открытия
     }
 
     private void deleteSelectedOils() {
@@ -130,11 +134,14 @@ public class MainActivity3 extends AppCompatActivity {
                 runOnUiThread(() -> {
                     oilAdapter.updateData(oils);
                     oilAdapter.clearSelection();
+                    finish();  // ← ДОБАВИТЬ: возврат после удаления
                 });
             });
+        } else {
+            finish();  // ← ДОБАВИТЬ: если ничего не выбрано
         }
-        exitSelectionMode();
     }
+
 
     private void exitSelectionMode() {
         isOpenMode = false;
@@ -148,6 +155,7 @@ public class MainActivity3 extends AppCompatActivity {
         btnOpenMode.setText("Открыть");
         btnDeleteMode.setText("Удалить");
     }
+
 
     private void loadOils() {
         Executor executor = Executors.newSingleThreadExecutor();
