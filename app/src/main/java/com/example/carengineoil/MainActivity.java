@@ -93,6 +93,13 @@ public class MainActivity extends AppCompatActivity {
                 String input = params[i].getText().toString().trim();
                 if (input.isEmpty()) continue;
                 hasValues = true;
+
+                // **ПРОВЕРКА НА БУКВЫ**
+                if (!input.matches("\\d+(\\.\\d+)?")) {
+                    errors.append("Некорректные данные в ").append(paramNames[i]).append(" (только числа)\n");
+                    continue;
+                }
+
                 double value;
                 try {
                     value = Double.parseDouble(input);
@@ -100,8 +107,9 @@ public class MainActivity extends AppCompatActivity {
                     errors.append("Некорректное число в ").append(paramNames[i]).append("\n");
                     continue;
                 }
+
                 if (value < ranges[i][0] || value > ranges[i][1]) {
-                    errors.append(paramNames[i]).append(", ");
+                    errors.append(paramNames[i]).append(" (").append(ranges[i][0]).append("-").append(ranges[i][1]).append("), ");
                 }
             }
 
@@ -110,14 +118,16 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            boolean isGood = errors.length() == 0;
-            String failedParams = isGood ? "" : errors.toString();
+            if (errors.length() > 0) {
+                // **ОШИБКИ: показать конкретные поля**
+                showAlertDialog("Ошибки ввода", errors.toString());
+                return;
+            }
 
-            String message = isGood ? "Масло удовлетворяет требованиям" :
-                    "Масло не удовлетворяет требованиям по параметрам:\n" + failedParams + "\nСохранить с пометкой 'Непригодно'?";
-
-            showSaveDialog("Проверка параметров", message, isGood, failedParams);
+            // Все данные корректны
+            showSaveDialog("Проверка параметров", "Масло удовлетворяет требованиям", true, "");
         });
+
 
         // Переход во вторую активити (MainActivity2)
         btnGoToSecond.setOnClickListener(v -> {
