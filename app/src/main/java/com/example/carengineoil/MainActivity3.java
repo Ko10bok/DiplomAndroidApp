@@ -53,14 +53,15 @@ public class MainActivity3 extends AppCompatActivity {
 
         // При нажатии на кнопку "Отмена" просто вызывайте exitSelectionMode(), а не finish().
         btnDeleteMode.setOnClickListener(v -> {
-            if (isDeleteMode) {
-                exitSelectionMode();
-            } else if (!isOpenMode && !isDeleteMode) {
+            if (!isDeleteMode && !isOpenMode) {
                 enterDeleteMode();
+            } else if (isDeleteMode) {
+                deleteSelectedOils();  // здесь вызывается метод удаления
             } else if (isOpenMode) {
                 exitSelectionMode();
             }
         });
+
         btnOpenMode.setOnClickListener(v -> {
             if (!isOpenMode && !isDeleteMode) {
                 enterOpenMode();
