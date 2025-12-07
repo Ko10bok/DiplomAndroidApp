@@ -132,15 +132,15 @@ public class MainActivity3 extends AppCompatActivity {
                 }
                 List<Oil> oils = db.oilDao().getAllOils();
                 runOnUiThread(() -> {
-                    oilAdapter.updateData(oils);
-                    oilAdapter.clearSelection();
-                    finish();  // ← ДОБАВИТЬ: возврат после удаления
+                    oilAdapter.updateData(oils);       // Обновляем данные
+                    oilAdapter.clearSelection();       // Очищаем выделения
+                    oilAdapter.notifyDataSetChanged(); // Обновляем RecyclerView
                 });
             });
-        } else {
-            finish();  // ← ДОБАВИТЬ: если ничего не выбрано
         }
+        exitSelectionMode();
     }
+
 
 
     private void exitSelectionMode() {
