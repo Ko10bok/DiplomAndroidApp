@@ -45,12 +45,12 @@ public class MainActivity3 extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         btnBack = findViewById(R.id.button2);
-        btnOpenMode = findViewById(R.id.button9);   // "Открыть"
-        btnDeleteMode = findViewById(R.id.button8); // "Удалить"
+        btnOpenMode = findViewById(R.id.button9);   // button9 = "Открыть"
+        btnDeleteMode = findViewById(R.id.button8); // button8 = "Удалить"
 
         btnBack.setOnClickListener(v -> finish());
 
-        // Кнопка "Открыть" - вход в режим открытия масла
+        // button9 "Открыть" → вход в режим / "Применить" → открыть
         btnOpenMode.setOnClickListener(v -> {
             if (!isSelectionMode) {
                 enterSelectionMode();
@@ -59,13 +59,9 @@ public class MainActivity3 extends AppCompatActivity {
             }
         });
 
-        // Кнопка "Удалить" - удаление выбранных масел
+        // button8 "Удалить" → "Отмена" → выход из режима
         btnDeleteMode.setOnClickListener(v -> {
-            if (isSelectionMode) {
-                deleteSelectedOils();
-            } else {
-                deleteSelectedOils(); // Работает и вне режима
-            }
+            exitSelectionMode();
         });
 
         loadOils();
@@ -77,16 +73,22 @@ public class MainActivity3 extends AppCompatActivity {
             oilAdapter.setSelectionMode(true);
             oilAdapter.notifyDataSetChanged();
         }
-        btnOpenMode.setText("Открыть выбранное");
-        btnDeleteMode.setText("Удалить выбранное");
+        // **СРАЗУ кнопки "Применить" и "Отмена"**
+        btnOpenMode.setText("Применить");    // button9
+        btnDeleteMode.setText("Отмена");     // button8
+        btnDeleteMode.setVisibility(View.VISIBLE);
     }
 
+
     private void openSelectedOil() {
-        if (oilAdapter == null) return;
+        if (oilAdapter == null) {
+            exitSelectionMode();
+            return;
+        }
 
         List<Oil> selectedOils = oilAdapter.getSelectedOils();
         if (!selectedOils.isEmpty()) {
-            Oil oil = selectedOils.get(0);
+            Oil oil = selectedOils.get(0); // Первое выбранное масло
 
             Intent intent;
             if ("MainActivity".equals(oil.getSourceActivity())) {
@@ -100,27 +102,8 @@ public class MainActivity3 extends AppCompatActivity {
             intent.putExtra("parameters", oil.getParameters());
             startActivity(intent);
         }
+        // Автоматический выход из режима
         exitSelectionMode();
-    }
-
-    private void deleteSelectedOils() {
-        if (oilAdapter == null) return;
-
-        List<Oil> selectedOils = oilAdapter.getSelectedOils();
-        if (!selectedOils.isEmpty()) {
-            Executor executor = Executors.newSingleThreadExecutor();
-            executor.execute(() -> {
-                for (Oil oil : selectedOils) {
-                    db.oilDao().delete(oil);
-                }
-                List<Oil> oils = db.oilDao().getAllOils();
-                runOnUiThread(() -> {
-                    oilAdapter.updateData(oils);
-                    oilAdapter.clearSelection();
-                    oilAdapter.notifyDataSetChanged();
-                });
-            });
-        }
     }
 
     private void exitSelectionMode() {
@@ -130,9 +113,9 @@ public class MainActivity3 extends AppCompatActivity {
             oilAdapter.clearSelection();
             oilAdapter.notifyDataSetChanged();
         }
-        // Возврат к исходным текстам кнопок
-        btnOpenMode.setText("Открыть");
-        btnDeleteMode.setText("Удалить");
+        // Возврат к исходным текстам
+        btnOpenMode.setText("Открыть");   // button9
+        btnDeleteMode.setText("Отмена");  // button8
     }
 
     private void loadOils() {
@@ -146,6 +129,7 @@ public class MainActivity3 extends AppCompatActivity {
 
                     oilAdapter.setOnOilClickListener(oil -> {
                         if (isSelectionMode) {
+                            // Выделяем для открытия
                             int pos = oilAdapter.getOilList().indexOf(oil);
                             if (pos != -1) {
                                 oilAdapter.toggleSelection(pos);
