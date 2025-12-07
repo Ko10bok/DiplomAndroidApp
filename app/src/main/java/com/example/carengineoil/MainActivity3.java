@@ -45,8 +45,8 @@ public class MainActivity3 extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         btnBack = findViewById(R.id.button2);
-        btnOpenMode = findViewById(R.id.button9);   // button9 = "Открыть"
-        btnDeleteMode = findViewById(R.id.button8); // button8 = "Удалить"
+        btnOpenMode = findViewById(R.id.button8);   // button9 = "Открыть"
+        btnDeleteMode = findViewById(R.id.button9); // button8 = "Удалить"
 
         btnBack.setOnClickListener(v -> finish());
 
