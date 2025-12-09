@@ -61,11 +61,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Для начала работы с приложением вам нужно ввести показатели замеров вашей экспресс-лаборатории. Названия показателей и единицы их измерения указаны сразу же при входе в приложение."
+                android:text="  Для начала работы с приложением вам нужно ввести показатели замеров вашей экспресс-лаборатории. Названия показателей и единицы их измерения указаны сразу же при входе в приложение."
                 android:textColor="#FAF3FB"
                 android:textSize="14sp"
                 app:layout_column="0"
                 app:layout_row="1" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="При переходе в окно с базой данных мы видим результаты всех наших замеров моторного масла. Здесь мы можем как удалить ненужные результаты, так и загрузить старый результат для корректировки данных."
+                android:textColor="#FAF3FB"
+                android:textSize="14sp"
+                app:layout_column="0"
+                app:layout_row="6" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Ввести можно любое количество параметров, но для более точной оценки качества рекомендуется ввести максимум показателей."
+                android:textColor="#FAF3FB"
+                android:textSize="14sp"
+                app:layout_column="0"
+                app:layout_row="2" />
+
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="После ввода, нажмите на кнопку &quot;Сохранить&quot;, и вам будеты выведено сообщение о пригодности или непригодности данного показателя. Тут же вы можете ввести название этого замера и сохранить результат в БД."
+                android:textColor="#FAF3FB"
+                android:textSize="14sp"
+                app:layout_column="0"
+                app:layout_row="3" />
 
             <TextView
                 android:id="@+id/textView28"
@@ -76,6 +109,16 @@
                 android:textSize="24sp"
                 app:layout_column="0"
                 app:layout_row="0" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="База данных"
+                android:textColor="#FAF3FB"
+                android:textSize="24sp"
+                app:layout_column="0"
+                app:layout_row="5" />
         </androidx.gridlayout.widget.GridLayout>
     </ScrollView>
 
