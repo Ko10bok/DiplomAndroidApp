@@ -33,9 +33,6 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // Инициал  // Содержание нерастворимых примесей
-
-        // --- Добавляем код для подстановки параметров из Intent ---
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("parameters")) {
             String parameters = intent.getStringExtra("parameters");
@@ -57,10 +54,10 @@ public class MainActivity2 extends AppCompatActivity {
             }
         }
 
-        Button buttonCheck = findViewById(R.id.button7);
+        Button buttonCheck = findViewById(R.id.button3);
         Button btnClear = findViewById(R.id.button4);
         Button buttonGoTo4 = findViewById(R.id.button5);
-        Button btnGoToSecond = findViewById(R.id.button3);
+        Button btnGoToSecond = findViewById(R.id.button7);
 
         buttonGoTo4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -213,6 +210,4 @@ public class MainActivity2 extends AppCompatActivity {
                 .setCancelable(false)
                 .show();
     }
-
-
 }
