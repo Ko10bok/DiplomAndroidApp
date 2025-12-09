@@ -41,25 +41,29 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
-        android:layout_width="380dp"
-        android:layout_height="595dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="370dp"
+        android:layout_height="590dp"
+        android:layout_marginStart="19dp"
         android:layout_marginTop="1dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
-        <TextView
-            android:id="@+id/textView24"
+        <androidx.gridlayout.widget.GridLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Здесь будет находиться подробная инстукция по использованию лаборатории и приложения"
-            android:textAlignment="viewStart"
-            android:textColor="#FAF3FB"
-            android:textSize="16sp" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ввод данных"
+                android:textColor="#FAF3FB"
+                android:textSize="24sp" />
+        </androidx.gridlayout.widget.GridLayout>
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

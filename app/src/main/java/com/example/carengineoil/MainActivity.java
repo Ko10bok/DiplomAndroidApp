@@ -16,17 +16,15 @@ public class MainActivity extends AppCompatActivity {
     private EditText[] params = new EditText[9]; // 4 параметра из MainActivity + 4 из MainActivity2
 
     private double[][] ranges = {
-            // Параметры из MainActivity (текущие)
             {4.0, 12.0},     // Щелочное число
             {12.5, 16.3},    // Вязкость кинематическая
             {10.0, 15.0},    // Испаряемость
             {190.0, 250.0},  // Температура вспышки
-            // Параметры из MainActivity2
             {0.5, 3.0},      // Кислотное число
             {1.0, 6.0},      // Дисперсионно стабилизирующие свойства
             {12.5, 16.3},    // Плотность
-            {0.14, 1.0},      // Содержание нерастворимых примесей
-            {0, 280}
+            {0.14, 1.0},     // Содержание нерастворимых примесей
+            {0, 280}         // Температура масла в двигателе
     };
 
     private String[] paramNames = {
@@ -46,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Инициализация EditText — обязательно обновите id в разметке activity_main, чтобы добавить новые поля
         params[0] = findViewById(R.id.editTextText3);   // Щелочное число
         params[1] = findViewById(R.id.editTextText23);  // Вязкость кинематическая
         params[2] = findViewById(R.id.editTextText24);  // Испаряемость
