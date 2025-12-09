@@ -57,12 +57,25 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Для начала работы с приложением вам нужно ввести показатели замеров вашей экспресс-лаборатории. Названия показателей и единицы их измерения указаны сразу же при входе в приложение."
+                android:textColor="#FAF3FB"
+                android:textSize="14sp"
+                app:layout_column="0"
+                app:layout_row="1" />
+
+            <TextView
                 android:id="@+id/textView28"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ввод данных"
                 android:textColor="#FAF3FB"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                app:layout_column="0"
+                app:layout_row="0" />
         </androidx.gridlayout.widget.GridLayout>
     </ScrollView>
 
