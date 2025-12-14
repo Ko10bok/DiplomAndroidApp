@@ -490,7 +490,7 @@
         android:layout_marginBottom="2dp"
         android:backgroundTint="#FF9800"
         android:bufferType="normal"
-        android:text="Подбор моторного масла"
+        android:text="Сделать снимок"
         android:textColor="#070607"
         android:textSize="16sp"
         app:cornerRadius="5dp"

@@ -16,17 +16,15 @@ public class MainActivity extends AppCompatActivity {
     private EditText[] params = new EditText[9]; // 4 параметра из MainActivity + 4 из MainActivity2
 
     private double[][] ranges = {
-            // Параметры из MainActivity (текущие)
             {4.0, 12.0},     // Щелочное число
             {12.5, 16.3},    // Вязкость кинематическая
             {10.0, 15.0},    // Испаряемость
             {190.0, 250.0},  // Температура вспышки
-            // Параметры из MainActivity2
             {0.5, 3.0},      // Кислотное число
             {1.0, 6.0},      // Дисперсионно стабилизирующие свойства
             {12.5, 16.3},    // Плотность
-            {0.14, 1.0},      // Содержание нерастворимых примесей
-            {0, 280}
+            {0.14, 1.0},     // Содержание нерастворимых примесей
+            {0, 280}         // Температура масла в двигателе
     };
 
     private String[] paramNames = {
@@ -46,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Инициализация EditText — обязательно обновите id в разметке activity_main, чтобы добавить новые поля
         params[0] = findViewById(R.id.editTextText3);   // Щелочное число
         params[1] = findViewById(R.id.editTextText23);  // Вязкость кинематическая
         params[2] = findViewById(R.id.editTextText24);  // Испаряемость
@@ -93,6 +90,13 @@ public class MainActivity extends AppCompatActivity {
                 String input = params[i].getText().toString().trim();
                 if (input.isEmpty()) continue;
                 hasValues = true;
+
+                // **ПРОВЕРКА НА БУКВЫ**
+                if (!input.matches("\\d+(\\.\\d+)?")) {
+                    errors.append("Некорректные данные в ").append(paramNames[i]).append(" (только числа)\n");
+                    continue;
+                }
+
                 double value;
                 try {
                     value = Double.parseDouble(input);
@@ -100,8 +104,9 @@ public class MainActivity extends AppCompatActivity {
                     errors.append("Некорректное число в ").append(paramNames[i]).append("\n");
                     continue;
                 }
+
                 if (value < ranges[i][0] || value > ranges[i][1]) {
-                    errors.append(paramNames[i]).append(", ");
+                    errors.append(paramNames[i]).append(" (").append(ranges[i][0]).append("-").append(ranges[i][1]).append("), ");
                 }
             }
 
@@ -110,14 +115,16 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
 
-            boolean isGood = errors.length() == 0;
-            String failedParams = isGood ? "" : errors.toString();
+            if (errors.length() > 0) {
+                // **ОШИБКИ: показать конкретные поля**
+                showAlertDialog("Ошибки ввода", errors.toString());
+                return;
+            }
 
-            String message = isGood ? "Масло удовлетворяет требованиям" :
-                    "Масло не удовлетворяет требованиям по параметрам:\n" + failedParams + "\nСохранить с пометкой 'Непригодно'?";
-
-            showSaveDialog("Проверка параметров", message, isGood, failedParams);
+            // Все данные корректны
+            showSaveDialog("Проверка параметров", "Масло удовлетворяет требованиям", true, "");
         });
+
 
         // Переход во вторую активити (MainActivity2)
         btnGoToSecond.setOnClickListener(v -> {
